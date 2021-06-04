@@ -1,5 +1,5 @@
-import * as ws from 'ws';
-import * as dotenv from 'dotenv';
+import ws from 'ws';
+import dotenv from 'dotenv';
 dotenv.config();
 
 export const wssPort = () => parseInt(process.env.MM_TS_TESTING_WSS_PORT, 10);
