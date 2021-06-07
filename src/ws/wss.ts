@@ -1,5 +1,5 @@
-import * as WebSocket from 'ws';
-import * as http from 'http';
+import WebSocket from 'ws';
+import http from 'http';
 import { WsMessage } from './WsMessage';
 import { JSONApiEnvelope, mmGetRandomStr } from 'mm-ts-utils';
 

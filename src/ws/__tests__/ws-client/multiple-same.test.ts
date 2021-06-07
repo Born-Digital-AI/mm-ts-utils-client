@@ -1,6 +1,6 @@
-import * as ws from 'ws';
+import ws from 'ws';
 import { WsClient } from '../../WsClient';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 dotenv.config();
 import { createCloseWssIf, createDoneIf, wssPort, wsUrl } from './_utils';
 

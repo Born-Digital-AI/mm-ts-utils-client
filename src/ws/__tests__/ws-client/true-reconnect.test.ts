@@ -1,7 +1,7 @@
 import { WsClient } from '../../WsClient';
-import * as ws from 'ws';
+import ws from 'ws';
 import { mmDelay, mmGetRandomInt } from 'mm-ts-utils';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import { wssPort, wsUrl } from './_utils';
 dotenv.config();
 
