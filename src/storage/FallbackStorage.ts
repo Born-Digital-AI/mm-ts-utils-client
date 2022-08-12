@@ -3,16 +3,28 @@
  * API is compatible with sessionStorage or localStorage.
  *
  */
+
+// shared map across all instances
+const MODULE_DB = new Map();
+
 export class FallbackStorage {
-    protected _length: number;
     protected _items: Map<string, any>;
+
+    constructor(useCommonDB:boolean = true) {
+        if(useCommonDB){
+            this._items = MODULE_DB;
+        }
+        else{
+            this._items = new Map<string, any>();
+        }
+    }
 
     public get length() {
         return this._items.size;
     }
 
     public getItem(key: string) {
-        return this._items[key];
+        return this._items.get(key) || null;
     }
 
     public key(key: number) {
