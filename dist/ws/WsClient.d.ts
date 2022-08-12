@@ -23,7 +23,7 @@ export declare class WsClient extends EventEmitter {
     static readonly READYSTATE_CLOSING = 2;
     static readonly READYSTATE_CLOSED = 3;
     logger: {
-        (message?: any, ...optionalParams: any[]): void;
+        (...data: any[]): void;
         (message?: any, ...optionalParams: any[]): void;
     };
     debug: boolean;

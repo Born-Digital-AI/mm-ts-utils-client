@@ -23,6 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WsClient = void 0;
 var eventemitter3_1 = __importDefault(require("eventemitter3"));
 var WsMessage_1 = require("./WsMessage");
 /**
@@ -89,7 +90,7 @@ var WsClient = /** @class */ (function (_super) {
             // if (!this._cid) { this._cid = mmUid(); } // do not auto generate
             return this._cid;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -112,7 +113,7 @@ var WsClient = /** @class */ (function (_super) {
         get: function () {
             return this._connection;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**
@@ -388,7 +389,7 @@ var WsClient = /** @class */ (function (_super) {
         get: function () {
             return this._joinedRooms;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

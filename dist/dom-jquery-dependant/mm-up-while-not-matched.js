@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mmUpWhileNotMatched = void 0;
 var _isFunction = function (obj) {
     return !!(obj && obj.constructor && obj.call && obj.apply);
 };

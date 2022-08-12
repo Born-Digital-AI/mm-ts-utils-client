@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import WebSocket from 'ws';
 import http from 'http';
 import { WsMessage } from './WsMessage';
@@ -19,7 +18,7 @@ interface WssInitOptions {
  * @param {WssInitOptions} options
  * @returns {WebSocket.Server}
  */
-export declare const createWss: (serverOrPort: number | http.Server, options?: WssInitOptions) => WebSocket.Server;
+export declare const createWss: (serverOrPort: http.Server | number, options?: WssInitOptions) => WebSocket.Server;
 /*********************************************************************************
  * helpers
  ********************************************************************************/

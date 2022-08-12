@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MMStorage = void 0;
+var mm_is_storage_available_1 = require("./mm-is-storage-available");
+var FallbackStorage_1 = require("./FallbackStorage");
 var _isFunction = function (obj) {
     return !!(obj && obj.constructor && obj.call && obj.apply);
 };
@@ -21,10 +24,22 @@ var MMStorage = /** @class */ (function () {
         this._prefix = _prefix;
         this._defaultTtlMs = _defaultTtlMs;
         if (isSession) {
-            this._storage = window.sessionStorage;
+            if (mm_is_storage_available_1.mmIsStorageAvailable('sessionStorage')) {
+                this._storage = window.sessionStorage;
+            }
+            else {
+                this.log('Error while accessing window sessionStorage, using fallback storage.');
+                this._storage = new FallbackStorage_1.FallbackStorage();
+            }
         }
         else {
-            this._storage = window.localStorage;
+            if (mm_is_storage_available_1.mmIsStorageAvailable('localStorage')) {
+                this._storage = window.localStorage;
+            }
+            else {
+                this.log('Error while accessing window localStorage, using fallback storage.');
+                this._storage = new FallbackStorage_1.FallbackStorage();
+            }
         }
     }
     /**
@@ -41,7 +56,7 @@ var MMStorage = /** @class */ (function () {
         get: function () {
             return this._storage;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /**

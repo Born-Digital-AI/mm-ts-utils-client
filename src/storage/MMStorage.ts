@@ -1,3 +1,6 @@
+import {mmIsStorageAvailable} from "./mm-is-storage-available";
+import {FallbackStorage} from "./FallbackStorage";
+
 const _isFunction = (obj) => {
     return !!(obj && obj.constructor && obj.call && obj.apply);
 };
@@ -24,9 +27,19 @@ export class MMStorage {
         protected _defaultTtlMs: number = 0
     ) {
         if (isSession) {
-            this._storage = window.sessionStorage;
+            if (mmIsStorageAvailable('sessionStorage')) {
+                this._storage = window.sessionStorage;
+            } else {
+                this.log('Error while accessing window sessionStorage, using fallback storage.')
+                this._storage = new FallbackStorage();
+            }
         } else {
-            this._storage = window.localStorage;
+            if (mmIsStorageAvailable('localStorage')) {
+                this._storage = window.localStorage;
+            } else {
+                this.log('Error while accessing window localStorage, using fallback storage.')
+                this._storage = new FallbackStorage();
+            }
         }
     }
 

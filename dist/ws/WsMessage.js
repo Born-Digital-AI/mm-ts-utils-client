@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WsMessage = void 0;
 var mm_ts_utils_1 = require("mm-ts-utils");
 /**
  * Simple value object with factory... nothing fancy
@@ -54,14 +55,14 @@ var WsMessage = /** @class */ (function () {
         get: function () {
             return this._id;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "payload", {
         get: function () {
             return this._payload;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "parsedPayload", {
@@ -73,70 +74,70 @@ var WsMessage = /** @class */ (function () {
                 return {};
             }
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "type", {
         get: function () {
             return this._type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "room", {
         get: function () {
             return this._room ? "" + this._room : '';
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isBroadcast", {
         get: function () {
             return WsMessage.TYPE_BROADCAST === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isJoin", {
         get: function () {
             return WsMessage.TYPE_JOIN_ROOM === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isLeave", {
         get: function () {
             return WsMessage.TYPE_LEAVE_ROOM === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isEcho", {
         get: function () {
             return WsMessage.TYPE_ECHO === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isReconnect", {
         get: function () {
             return WsMessage.TYPE_RECONNECT === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isHeartbeat", {
         get: function () {
             return WsMessage.TYPE_HEARTBEAT === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(WsMessage.prototype, "isConnectionEstablished", {
         get: function () {
             return WsMessage.TYPE_CONNECTION_ESTABLISHED === this.type;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     WsMessage.prototype.toJSON = function () {
