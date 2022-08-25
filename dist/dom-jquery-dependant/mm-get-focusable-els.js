@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mmGetFocusableEls = void 0;
 /**
  * ported z https://github.com/edenspiekermann/a11y-dialog/blob/master/a11y-dialog.js
  *

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mmParseUrl = void 0;
 /**
  * https://gist.github.com/jlong/2428561
  * @param url

@@ -5,7 +5,6 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FallbackStorage = void 0;
 // shared map across all instances
 var MODULE_DB = new Map();
 var FallbackStorage = /** @class */ (function () {
@@ -22,7 +21,7 @@ var FallbackStorage = /** @class */ (function () {
         get: function () {
             return this._items.size;
         },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     FallbackStorage.prototype.getItem = function (key) {

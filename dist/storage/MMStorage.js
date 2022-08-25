@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MMStorage = void 0;
 var mm_is_storage_available_1 = require("./mm-is-storage-available");
 var FallbackStorage_1 = require("./FallbackStorage");
 var _isFunction = function (obj) {
@@ -56,7 +55,7 @@ var MMStorage = /** @class */ (function () {
         get: function () {
             return this._storage;
         },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     /**

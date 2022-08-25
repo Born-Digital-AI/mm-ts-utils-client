@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mmCopyStringToClipboard = void 0;
 /**
  * https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
  */
