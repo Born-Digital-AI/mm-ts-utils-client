@@ -22,41 +22,51 @@
   "homepage": "https://github.com/Born-Digital-AI/mm-ts-utils-client#readme",
   "dependencies": {
     "eventemitter3": "^4.0.0",
-    "jest": "^24.9.0",
+    "jest": "^29.5.0",
     "lodash": "^4.17.21",
     "mm-ts-utils": "git+https://github.com/Born-Digital-AI/mm-ts-utils.git",
     "ws": "^6.2.2"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.6.3",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "@types/jest": "^24.0.20",
-    "@types/lodash": "^4.14.144",
-    "@types/node": "^12.11.7",
+    "@types/lodash": "^4.14.195",
+    "@types/node": "^20.3.2",
     "@types/websocket": "0.0.40",
     "@types/ws": "^6.0.3",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^29.5.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "cross-env": "^6.0.3",
     "dotenv": "^6.2.0",
     "if-env": "^1.0.4",
     "prettier": "^1.18.2",
     "rimraf": "^2.7.1",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "ts-jest": "^29.1.0",
+    "typescript": "4.9.3"
   },
   "jest": {
     "verbose": false,
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
       "^.+\\.jsx?$": "babel-jest"
     },
-    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es/.*)"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash-es/.*)"
+    ],
     "testMatch": [
       "**/__tests__/**/*.(ts|tsx|js|jsx)",
       "**/?(*.)(spec|test).(ts|tsx|js|jsx)"
     ],
-    "modulePathIgnorePatterns": ["<rootDir>/dist/"],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ],
     "globals": {
       "ts-jest": {
         "diagnostics": false

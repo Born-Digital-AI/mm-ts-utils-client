@@ -14,7 +14,7 @@ function mmParseUrl(url, key) {
         port: '',
         pathname: '',
         search: '',
-        hash: '',
+        hash: '', // => "#hash"
     };
     var parser = document.createElement('a');
     parser.href = url || window.location.href;

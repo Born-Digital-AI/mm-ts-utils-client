@@ -4,7 +4,7 @@ exports.mmCopyStringToClipboard = void 0;
 /**
  * https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
  */
-exports.mmCopyStringToClipboard = function (str) {
+var mmCopyStringToClipboard = function (str) {
     if (!document.queryCommandSupported || !document.queryCommandSupported('copy')) {
         return false;
     }
@@ -20,3 +20,4 @@ exports.mmCopyStringToClipboard = function (str) {
     document.body.removeChild($el);
     return true;
 };
+exports.mmCopyStringToClipboard = mmCopyStringToClipboard;

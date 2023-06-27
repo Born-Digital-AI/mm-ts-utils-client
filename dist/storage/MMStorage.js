@@ -24,7 +24,7 @@ var MMStorage = /** @class */ (function () {
         this._prefix = _prefix;
         this._defaultTtlMs = _defaultTtlMs;
         if (isSession) {
-            if (mm_is_storage_available_1.mmIsStorageAvailable('sessionStorage')) {
+            if ((0, mm_is_storage_available_1.mmIsStorageAvailable)('sessionStorage')) {
                 this._storage = window.sessionStorage;
             }
             else {
@@ -33,7 +33,7 @@ var MMStorage = /** @class */ (function () {
             }
         }
         else {
-            if (mm_is_storage_available_1.mmIsStorageAvailable('localStorage')) {
+            if ((0, mm_is_storage_available_1.mmIsStorageAvailable)('localStorage')) {
                 this._storage = window.localStorage;
             }
             else {
@@ -69,7 +69,7 @@ var MMStorage = /** @class */ (function () {
         }
         catch (e) {
             console.error(e);
-            this.log("!setItem(" + key + ") " + e);
+            this.log("!setItem(".concat(key, ") ").concat(e));
         }
     };
     /**
@@ -98,7 +98,7 @@ var MMStorage = /** @class */ (function () {
         }
         catch (e) {
             console.error(e);
-            this.log("!setItem(" + key + ") " + e);
+            this.log("!setItem(".concat(key, ") ").concat(e));
             if (/quota/i.test(e)) {
                 this.removeExpired();
             } // too naive?
@@ -139,7 +139,7 @@ var MMStorage = /** @class */ (function () {
         catch (e) {
             // corrupted json?
             console.error(e);
-            this.log("!getItem(" + key + ") " + e);
+            this.log("!getItem(".concat(key, ") ").concat(e));
         }
         return null;
     };

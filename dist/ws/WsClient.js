@@ -3,21 +3,25 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -65,7 +69,7 @@ var WsClient = /** @class */ (function (_super) {
         });
         // options mapped to private props
         if (_this.options.retryLimit !== void 0) {
-            _this._retryLimit = parseInt("" + _this.options.retryLimit, 10);
+            _this._retryLimit = parseInt("".concat(_this.options.retryLimit), 10);
             if (isNaN(_this._retryLimit)) {
                 _this._retryLimit = 0;
             }
@@ -241,7 +245,7 @@ var WsClient = /** @class */ (function (_super) {
         }
         this.log(event, args);
         // maybe emit wilcard here as well?
-        return _super.prototype.emit.apply(this, __spreadArrays([event], args));
+        return _super.prototype.emit.apply(this, __spreadArray([event], args, false));
     };
     /**
      * @param msg
@@ -329,7 +333,7 @@ var WsClient = /** @class */ (function (_super) {
             doRoomAction = false;
         }
         if (!doRoomAction) {
-            this.log("Skipping (unneeded) " + (isJoin ? 'JOIN' : 'LEAVE') + " for " + room);
+            this.log("Skipping (unneeded) ".concat(isJoin ? 'JOIN' : 'LEAVE', " for ").concat(room));
         }
         // we don't need to check for `isOpen` because messages are queued in order
         // and will be flushed once connection becomes ready
@@ -342,7 +346,7 @@ var WsClient = /** @class */ (function (_super) {
                 // debug
                 var isRejoin = isJoin && _this._joinedRooms.has(room);
                 var joinLabel = (isRejoin ? 'RE-' : '') + 'JOINED';
-                _this.log(_this.cid + " " + (isJoin ? joinLabel : 'LEFT') + " ROOM " + room);
+                _this.log("".concat(_this.cid, " ").concat(isJoin ? joinLabel : 'LEFT', " ROOM ").concat(room));
                 // save (!important)
                 isJoin
                     ? _this._joinedRooms.set(room, true)

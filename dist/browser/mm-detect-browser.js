@@ -26,7 +26,13 @@ exports.mmDetectBrowser = (function () {
             var isBlink = (isChrome || isOpera) && !!window.CSS;
             //
             _detected = {
-                isOpera: isOpera, isFirefox: isFirefox, isSafari: isSafari, isIE: isIE, isEdge: isEdge, isChrome: isChrome, isBlink: isBlink
+                isOpera: isOpera,
+                isFirefox: isFirefox,
+                isSafari: isSafari,
+                isIE: isIE,
+                isEdge: isEdge,
+                isChrome: isChrome,
+                isBlink: isBlink
             };
         }
         return _detected;

@@ -17,7 +17,7 @@ var _notAllowedHostWarn = new Map();
  * @param {WssInitOptions} options
  * @returns {WebSocket.Server}
  */
-exports.createWss = function (serverOrPort, options) {
+var createWss = function (serverOrPort, options) {
     options = Object.assign(
     // merge defaults with provided
     { autoReconnectInterval: 5000 }, options || {});
@@ -33,7 +33,7 @@ exports.createWss = function (serverOrPort, options) {
     var clog = options.logger || (function () { return void 0; });
     // debug
     if (args.port) {
-        clog("WebSocket.Server listening on " + args.port + "...");
+        clog("WebSocket.Server listening on ".concat(args.port, "..."));
     }
     else {
         clog("WebSocket.Server listening on http.Server's port...");
@@ -46,7 +46,7 @@ exports.createWss = function (serverOrPort, options) {
             if (origin_1 && -1 === options.originWhitelist.indexOf(origin_1)) {
                 if (!_notAllowedHostWarn.has(origin_1)) {
                     _notAllowedHostWarn.set(origin_1, true);
-                    console.error("Origin " + origin_1 + " not allowed. Ignoring...");
+                    console.error("Origin ".concat(origin_1, " not allowed. Ignoring..."));
                 }
                 ws.close();
                 return;
@@ -54,7 +54,7 @@ exports.createWss = function (serverOrPort, options) {
         }
         // initialize client
         // 1.
-        ws.cid = mm_ts_utils_1.mmGetRandomStr({ length: 16 /*, prefix: 'ws_' */ });
+        ws.cid = (0, mm_ts_utils_1.mmGetRandomStr)({ length: 16 /*, prefix: 'ws_' */ });
         // 2.
         ws.rooms = new Map();
         // 3.
@@ -97,7 +97,7 @@ exports.createWss = function (serverOrPort, options) {
             }
             // broadcast?
             else if (msg.isBroadcast) {
-                exports.wsSend(wss, msg, ws);
+                (0, exports.wsSend)(wss, msg, ws);
                 wss.emit(WsMessage_1.WsMessage.TYPE_BROADCAST, msg, ws, req);
                 wss.emit("all", msg, ws, req);
             }
@@ -133,7 +133,7 @@ exports.createWss = function (serverOrPort, options) {
             if (e.errno) {
                 return;
             }
-            console.error("ws: " + e.toString());
+            console.error("ws: ".concat(e.toString()));
         });
         ws.on('close', function () {
             ws.isAlive = false; // treba toto?
@@ -156,10 +156,11 @@ exports.createWss = function (serverOrPort, options) {
     }, options.autoReconnectInterval);
     // hm...
     wss.on('error', function (e) {
-        console.log("Websocket.Server " + e.toString());
+        console.log("Websocket.Server ".concat(e.toString()));
     });
     return wss;
 };
+exports.createWss = createWss;
 /*********************************************************************************
  * helpers
  ********************************************************************************/
@@ -168,7 +169,7 @@ exports.createWss = function (serverOrPort, options) {
  * @param {WsMessage} msg
  * @param {WebSocket} ws
  */
-exports.wsSend = function (wss, msg, ws) {
+var wsSend = function (wss, msg, ws) {
     if (ws === void 0) { ws = null; }
     // empty room `` is considered "force to all"... subject of change...
     var forceToAllRooms = msg.room === '';
@@ -183,28 +184,34 @@ exports.wsSend = function (wss, msg, ws) {
         }
     });
 };
+exports.wsSend = wsSend;
 // sugar
-exports.wsSendPayloadToRoom = function (wss, payload, room, type) {
+var wsSendPayloadToRoom = function (wss, payload, room, type) {
     if (type === void 0) { type = null; }
     if (!Array.isArray(room)) {
         room = [room];
     }
-    room.forEach(function (r) { return exports.wsSend(wss, WsMessage_1.WsMessage.factory({ payload: payload, room: r, type: type })); });
+    room.forEach(function (r) { return (0, exports.wsSend)(wss, WsMessage_1.WsMessage.factory({ payload: payload, room: r, type: type })); });
 };
+exports.wsSendPayloadToRoom = wsSendPayloadToRoom;
 // sugar
-exports.wsSendPayloadToAll = function (wss, payload, type) {
+var wsSendPayloadToAll = function (wss, payload, type) {
     if (type === void 0) { type = null; }
-    return exports.wsSend(wss, WsMessage_1.WsMessage.factory({ payload: payload, room: '', type: type }));
+    return (0, exports.wsSend)(wss, WsMessage_1.WsMessage.factory({ payload: payload, room: '', type: type }));
 };
+exports.wsSendPayloadToAll = wsSendPayloadToAll;
 // sugar
-exports.wsSendJsonApiToRoom = function (wss, payload, room) {
-    return exports.wsSendPayloadToRoom(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI);
+var wsSendJsonApiToRoom = function (wss, payload, room) {
+    return (0, exports.wsSendPayloadToRoom)(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI);
 };
+exports.wsSendJsonApiToRoom = wsSendJsonApiToRoom;
 // sugar
-exports.wsSendJsonApiUpdateToRoom = function (wss, payload, room) {
-    return exports.wsSendPayloadToRoom(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI_UPDATE);
+var wsSendJsonApiUpdateToRoom = function (wss, payload, room) {
+    return (0, exports.wsSendPayloadToRoom)(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI_UPDATE);
 };
+exports.wsSendJsonApiUpdateToRoom = wsSendJsonApiUpdateToRoom;
 // sugar
-exports.wsSendJsonApiDeleteToRoom = function (wss, payload, room) {
-    return exports.wsSendPayloadToRoom(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI_DELETE);
+var wsSendJsonApiDeleteToRoom = function (wss, payload, room) {
+    return (0, exports.wsSendPayloadToRoom)(wss, JSON.stringify(payload), room, WsMessage_1.WsMessage.TYPE_JSONAPI_DELETE);
 };
+exports.wsSendJsonApiDeleteToRoom = wsSendJsonApiDeleteToRoom;
