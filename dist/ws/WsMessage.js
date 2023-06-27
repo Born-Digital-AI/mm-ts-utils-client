@@ -18,7 +18,7 @@ var WsMessage = /** @class */ (function () {
         this._id = _id;
         this.expectsResponse = expectsResponse;
         if (!this._id) {
-            this._id = mm_ts_utils_1.mmUid();
+            this._id = (0, mm_ts_utils_1.mmUid)();
         }
     }
     WsMessage.factory = function (data) {
@@ -44,7 +44,7 @@ var WsMessage = /** @class */ (function () {
     // type sugar
     WsMessage.stringify = function (data) {
         if (!data.id) {
-            data.id = mm_ts_utils_1.mmUid();
+            data.id = (0, mm_ts_utils_1.mmUid)();
         }
         return JSON.stringify(data);
     };
@@ -86,7 +86,7 @@ var WsMessage = /** @class */ (function () {
     });
     Object.defineProperty(WsMessage.prototype, "room", {
         get: function () {
-            return this._room ? "" + this._room : '';
+            return this._room ? "".concat(this._room) : '';
         },
         enumerable: false,
         configurable: true

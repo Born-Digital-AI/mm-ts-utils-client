@@ -27,13 +27,13 @@ function mmUpWhileNotMatched($el, matcher, traverseLimit) {
     // lebo inak tu mame riziko endless loop...
     // 1. set default ak nie je digit (toto odchyti undefined ako aj ine hodnoty a typy)
     //    note: tu sa nespolieham na typescript
-    if (!/^\d+$/.test("" + traverseLimit)) {
+    if (!/^\d+$/.test("".concat(traverseLimit))) {
         // interne precastuje na string
         traverseLimit = 5;
     }
     // 2. explicit cast na int (aby nizsie porovnanie zbehlo korektne)
     //    Note: NaN tu nemusime testovat, lebo vyssi regex uz validoval...
-    traverseLimit = parseInt("" + traverseLimit, 10);
+    traverseLimit = parseInt("".concat(traverseLimit), 10);
     // explicit false check, not just falsey... keby sme sa pytali iba na falsey
     // tak by neslo rozlisit medzi regulernou falsey a not found
     while (matched === false) {
